@@ -1,0 +1,50 @@
+body {
+    background: rgb(0, 225, 255);
+    font: normal 15pt Arial;
+}
+
+header {
+    color: white;
+    text-align: center;
+}
+
+section {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    width: 500px;
+    margin: auto;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.377);
+}
+ 
+footer {
+    color: white;
+    text-align: center;
+    font-style: italic;
+}
+
+div#divspace{
+    height: 40px;
+}
+
+input#num1{
+    width: 185px;
+}
+
+input#num2{
+    width: 200px;
+}
+
+input#button{
+    text-align: center;
+    background-color: white;
+    font: normal 18pt Arial;
+}
+
+div#btn{
+    text-align: center;
+}
+
+div#res{
+    text-align: center;
+}
