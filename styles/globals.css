@@ -8,24 +8,37 @@ header {
     text-align: center;
 }
 
-section#principal {
+footer {
+   color: white;
+   text-align: center;
+   align-items: center;
+   font-style: italic;
+}
+
+#principal {
     background: white;
     border-radius: 10px;
-    padding: 15px;
     width: 350px;
+    padding: 15px;
     margin: auto;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.377);
 }
- 
-footer {
-    color: white;
-    text-align: center;
-    font-style: italic;
-}
 
-div#divspace{
+div#divnums{
     text-align: center;
     height: 40px;
+}
+
+div#btn{
+    text-align: center;
+}
+
+div#btnres{
+    text-align: center;
+}
+
+div#res{
+    text-align: center;
 }
 
 input#xi{
@@ -48,12 +61,4 @@ input#adic{
     background-color: white;
     font: normal 18pt Arial;
     margin: 0px 0px 0px 5px;
-}
-
-div#btn{
-    text-align: center;
-}
-
-div#res{
-    text-align: center;
 }
