@@ -42,7 +42,7 @@ function Home() {
 
             </div>
             <div id='btnres'>
-                <input id="reset" type="button" value="Resultado" onClick={() => {
+                <input id="result" type="button" value="Resultado" onClick={() => {
                     var res = document.getElementById('res')
                     var somax = 0
                     var somay = 0

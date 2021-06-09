@@ -53,6 +53,7 @@ input#reset{
     text-align: center;
     background-color: white;
     font: normal 18pt Arial;
+    width: 120px;
     margin: 0px 5px 0px 0px;
 }
 
@@ -60,5 +61,14 @@ input#adic{
     text-align: center;
     background-color: white;
     font: normal 18pt Arial;
+    width: 120px;
     margin: 0px 0px 0px 5px;
+}
+
+input#result{
+    text-align: center;
+    background-color: white;
+    font: normal 18pt Arial;
+    width: 120px;
+    margin: 10px 0px 0px 0px;
 }
