@@ -18,6 +18,7 @@ function Home() {
                     res.innerHTML = ``
                     xn = []
                     yn = []
+                    n = 0
                 }}></input><input id="adic" type="button" value="Adicionar" onClick={() => {
                     var res = document.getElementById('res')
                     var xitext = document.getElementById('xi').value
