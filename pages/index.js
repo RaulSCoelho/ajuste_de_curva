@@ -67,8 +67,12 @@ function Home() {
                         somay2 += Math.pow(yn[i], 2)
                     }
                     b1 = (n * somaxy - somax * somay) / (n * somax2 - Math.pow(somax, 2))
-                    b0 = (somay-somax*b1)/n
-                    res.innerHTML += `𝑓(𝑥) = ${b0.toFixed(3)} + ${b1.toFixed(3)}𝑥`
+                    b0 = (somay - somax * b1) / n
+                    if (b1 < 0) {
+                        res.innerHTML += `𝑓(𝑥) = ${b0.toFixed(3)} - ${b1.toFixed(3)}𝑥`
+                    } else {
+                        res.innerHTML += `𝑓(𝑥) = ${b0.toFixed(3)} + ${b1.toFixed(3)}𝑥`
+                    }
                 }}></input>
             </div>
         </section>
