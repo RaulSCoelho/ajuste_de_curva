@@ -8,11 +8,11 @@ header {
     text-align: center;
 }
 
-section {
+section#principal {
     background: white;
     border-radius: 10px;
     padding: 15px;
-    width: 500px;
+    width: 350px;
     margin: auto;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.377);
 }
@@ -24,21 +24,30 @@ footer {
 }
 
 div#divspace{
+    text-align: center;
     height: 40px;
 }
 
-input#num1{
-    width: 185px;
+input#xi{
+    width: 100px;
 }
 
-input#num2{
-    width: 200px;
+input#yi{
+    width: 100px;
 }
 
-input#button{
+input#reset{
     text-align: center;
     background-color: white;
     font: normal 18pt Arial;
+    margin: 0px 5px 0px 0px;
+}
+
+input#adic{
+    text-align: center;
+    background-color: white;
+    font: normal 18pt Arial;
+    margin: 0px 0px 0px 5px;
 }
 
 div#btn{
