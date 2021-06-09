@@ -69,7 +69,7 @@ function Home() {
                     b1 = (n * somaxy - somax * somay) / (n * somax2 - Math.pow(somax, 2))
                     b0 = (somay - somax * b1) / n
                     if (b1 < 0) {
-                        res.innerHTML += `𝑓(𝑥) = ${b0.toFixed(3)} - ${b1.toFixed(3)}𝑥`
+                        res.innerHTML += `𝑓(𝑥) = ${b0.toFixed(3)} - ${Math.abs(b1).toFixed(3)}𝑥`
                     } else {
                         res.innerHTML += `𝑓(𝑥) = ${b0.toFixed(3)} + ${b1.toFixed(3)}𝑥`
                     }
