@@ -72,3 +72,10 @@ input#result{
     width: 120px;
     margin: 10px 0px 0px 0px;
 }
+
+#chart{
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
