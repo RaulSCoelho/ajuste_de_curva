@@ -196,9 +196,10 @@ const Home = () => {
                                 yn[yn.length - i3] = ynsort
                             }
                         }
-                        i = xn.length - 2
-                        i2++
+                        i = xn.length - 1
+                        i -= i3
                         i3++
+                        i2++
                     }
                     chart1()
                 }}></input>
