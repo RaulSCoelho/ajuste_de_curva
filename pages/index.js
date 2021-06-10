@@ -15,11 +15,11 @@ const Home = () => {
     function chart() {
 
         setChartData({
-            labels: [x[0], x[x.length - 1]],
+            labels: x,
             datasets: [
                 {
                     label: 'Equação da reta',
-                    data: [fx[0], fx[fx.length - 1]],
+                    data: fx,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
