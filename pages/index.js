@@ -50,7 +50,7 @@ const Home = () => {
             labels: x,
             datasets: [
                 {
-                    label: 'Equação da reta',
+                    label: 'Ajuste Linear Simples',
                     data: fx,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
