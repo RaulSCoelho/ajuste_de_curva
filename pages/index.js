@@ -156,19 +156,51 @@ const Home = () => {
                     r2 = Math.pow((somaxy - somax * somay / n), 2) / ((somax2 - Math.pow(somax, 2) / n) * (somay2 - Math.pow(somay, 2) / n))
                     res.innerHTML += `<br>Coeficiente de Determinação (𝑅²) <br>`
                     res.innerHTML += `${r2.toFixed(5)}`
+                    var menorx = 0
                     var maiorx = 0
-                    for(var i = 0; i < xn.length; i++){
-                        if(xn[i]>maiorx){
+                    for (var i = 0; i < xn.length; i++) {
+                        if (xn[i] > maiorx) {
                             maiorx = xn[i]
                         }
                     }
-                    for (var i = 0; i <= maiorx; i++) {
-                        x.push(i)
-                        var fxconta = Number(b0.toFixed(3)) + Number(b1.toFixed(3)) * x[i]
+                    menorx = maiorx
+                    for (var i = 0; i < xn.length; i++) {
+                        if (xn[i] < menorx) {
+                            menorx = xn[i]
+                        }
+                    }
+                    for (var i2 = 0; i2 <= maiorx; i2++) {
+                        x.push(i2)
+                        var fxconta = Number(b0.toFixed(3)) + Number(b1.toFixed(3)) * x[i2]
                         fx.push(fxconta)
                     }
-                    chart1()
+
                     chart2()
+                    var i = xn.length - 1
+                    var i2 = 0
+                    var i3 = 1
+                    var maiorxsort = 0
+                    while (i2 < xn.length - 1) {
+                        maiorxsort = 0
+                        for (i; i >= 0; i--) {
+                            if (xn[i] > maiorxsort) {
+                                maiorxsort = xn[i]
+                            }
+                        }
+                        for (i = 0; i < xn.length; i++) {
+                            if (xn[i] == maiorxsort && xn[i] != menorx && xn[i + 1] < xn[i]) {
+                                xn[i] = xn[xn.length - i3]
+                                xn[xn.length - i3] = maiorxsort
+                                var ynsort = yn[i]
+                                yn[i] = yn[yn.length - i3]
+                                yn[yn.length - i3] = ynsort
+                            }
+                        }
+                        i = xn.length - 2
+                        i2++
+                        i3++
+                    }
+                    chart1()
                 }}></input>
             </div>
         </section>
