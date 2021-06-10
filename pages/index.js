@@ -121,7 +121,7 @@ const Home = () => {
                         res.innerHTML += `𝑓(𝑥) = ${b0.toFixed(3)} + ${b1.toFixed(3)}𝑥 <br>`
                     }
                     r2 = Math.pow((somaxy - somax * somay / n), 2) / ((somax2 - Math.pow(somax, 2) / n) * (somay2 - Math.pow(somay, 2) / n))
-                    res.innerHTML += `Coeficiente de Determinação (𝑅²) <br>`
+                    res.innerHTML += `<br>Coeficiente de Determinação (𝑅²) <br>`
                     res.innerHTML += `${r2.toFixed(5)}`
                     for (var i = 0; i < 10; i++) {
                         x.push(i)
