@@ -10,11 +10,43 @@ const Home = () => {
     var yn = []
     var n = 0
 
-    const [chartData, setChartData] = useState({})
+    const [chartData1, setChartData1] = useState({})
+    const [chartData2, setChartData2] = useState({})
 
-    function chart() {
+    function chart1() {
 
-        setChartData({
+        setChartData1({
+            labels: xn,
+            datasets: [
+                {
+                    label: 'Pontos',
+                    showLine: false,
+                    data: yn,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 4
+                }
+            ]
+        })
+    }
+
+    function chart2() {
+
+        setChartData2({
             labels: x,
             datasets: [
                 {
@@ -43,7 +75,8 @@ const Home = () => {
     }
 
     React.useEffect(() => {
-        chart()
+        chart1()
+        chart2()
     }, [])
 
     return <div>
@@ -123,12 +156,19 @@ const Home = () => {
                     r2 = Math.pow((somaxy - somax * somay / n), 2) / ((somax2 - Math.pow(somax, 2) / n) * (somay2 - Math.pow(somay, 2) / n))
                     res.innerHTML += `<br>Coeficiente de Determinação (𝑅²) <br>`
                     res.innerHTML += `${r2.toFixed(5)}`
-                    for (var i = 0; i < 10; i++) {
+                    var maiorx = 0
+                    for(var i = 0; i < xn.length; i++){
+                        if(xn[i]>maiorx){
+                            maiorx = xn[i]
+                        }
+                    }
+                    for (var i = 0; i <= maiorx; i++) {
                         x.push(i)
                         var fxconta = Number(b0.toFixed(3)) + Number(b1.toFixed(3)) * x[i]
                         fx.push(fxconta)
                     }
-                    chart()
+                    chart1()
+                    chart2()
                 }}></input>
             </div>
         </section>
@@ -136,7 +176,10 @@ const Home = () => {
             <p>&copy; Raul Semicek Coelho</p>
         </footer>
         <div id="chart">
-            <Line data={chartData} options={{
+            <Line data={chartData1} options={{
+                responsive: true
+            }} />
+            <Line data={chartData2} options={{
                 responsive: true
             }} />
         </div>
