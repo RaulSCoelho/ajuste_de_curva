@@ -91,7 +91,7 @@ const Interpol = () => {
                 <input id="check" type="button" value="Testar valor" onClick={() => {
                     var res2 = document.getElementById('res2')
                     if (xn.length < 2) {
-                        res.innerHTML = `\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}`
+                        res2.innerHTML = `\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}`
                     } else {
                         var xptext = document.getElementById('x').value
                         var yptext = document.getElementById('y').value
