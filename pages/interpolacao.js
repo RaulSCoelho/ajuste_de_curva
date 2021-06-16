@@ -70,9 +70,9 @@ const Interpol = () => {
                     var xi = Number(xitext)
                     var yi = Number(yitext)
                     if (xitext.length == 0 || yitext.length == 0) {
-                        res.innerHTML = `\u{2757} Digite os valores de xi e yi \u{2757}`
+                        res.innerHTML = `<br>\u{2757} Digite os valores de xi e yi \u{2757}<br>`
                     } else {
-                        if (res.innerHTML == `\u{2757} Digite os valores de xi e yi \u{2757}` || res.innerHTML == `\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}`) {
+                        if (res.innerHTML == `<br>\u{2757} Digite os valores de xi e yi \u{2757}<br>` || res.innerHTML == `<br>\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}<br>`) {
                             res.innerHTML = ``
                         }
                         res.innerHTML += `${xi} | ${yi}<br>`
@@ -91,7 +91,7 @@ const Interpol = () => {
                 <input id="check" type="button" value="Testar valor" onClick={() => {
                     var res2 = document.getElementById('res2')
                     if (xn.length < 2) {
-                        res2.innerHTML = `\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}`
+                        res2.innerHTML = `<br>\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}<br>`
                     } else {
                         var xptext = document.getElementById('x').value
                         var yptext = document.getElementById('y').value
@@ -148,7 +148,7 @@ const Interpol = () => {
                     var xp = Number(xptext)
                     var yp = Number(yptext)
                     if (xn.length < 2) {
-                        res.innerHTML = `\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}`
+                        res.innerHTML = `<br>\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}<br>`
                     } else {
                         fx = []
                         x = []
