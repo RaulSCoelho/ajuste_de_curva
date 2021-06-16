@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 
-const Home = () => {
+const Interpol = () => {
     var fx = []
     var x = []
     var xn = []
@@ -11,46 +11,14 @@ const Home = () => {
     var n = 0
 
     const [chartData1, setChartData1] = useState({})
-    const [chartData2, setChartData2] = useState({})
 
     function chart1() {
 
         setChartData1({
-            labels: xn,
-            datasets: [
-                {
-                    label: 'Pontos',
-                    showLine: false,
-                    data: yn,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 4
-                }
-            ]
-        })
-    }
-
-    function chart2() {
-
-        setChartData2({
             labels: x,
             datasets: [
                 {
-                    label: 'Ajuste Linear Simples',
+                    label: 'Interpolação Linear',
                     data: fx,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -76,13 +44,12 @@ const Home = () => {
 
     React.useEffect(() => {
         chart1()
-        chart2()
     }, [])
 
     return <div>
         <header>
-            <a id="link" href="/interpolacao"> Interpolação Linear </a>
-            <h1>Ajuste Linear de Curvas</h1>
+            <a id="link" href="/"> Ajuste Linear de Curvas </a>
+            <h1>Interpolação Linear</h1>
         </header>
         <section id="principal">
             <div id="divnums">
@@ -123,43 +90,8 @@ const Home = () => {
                     if (xn.length < 2) {
                         res.innerHTML = `[ERRO] Digite no mínimo dois valores para xi e yi`
                     } else {
-                        var somax = 0
-                        var somay = 0
-                        var somaxy = 0
-                        var somax2 = 0
-                        var somay2 = 0
-                        var b1 = 0
-                        var b0 = 0
-                        var r2 = 0
                         fx = []
                         x = []
-                        for (var i = 0; i < n; i++) {
-                            somax += xn[i]
-                        }
-                        for (var i = 0; i < n; i++) {
-                            somay += yn[i]
-                        }
-                        for (var i = 0; i < n; i++) {
-                            somaxy += xn[i] * yn[i]
-                        }
-                        for (var i = 0; i < n; i++) {
-                            somax2 += Math.pow(xn[i], 2)
-                        }
-                        for (var i = 0; i < n; i++) {
-                            somay2 += Math.pow(yn[i], 2)
-                        }
-                        b1 = (n * somaxy - somax * somay) / (n * somax2 - Math.pow(somax, 2))
-                        b0 = (somay - somax * b1) / n
-                        if (b1 < 0) {
-                            res.innerHTML = `\u{1F4C9} Equação da reta: <br>`
-                            res.innerHTML += `𝑓(𝑥) = ${b0.toFixed(3)} - ${Math.abs(b1).toFixed(3)}𝑥 <br>`
-                        } else {
-                            res.innerHTML = `\u{1F4C9} Equação da reta: <br>`
-                            res.innerHTML += `𝑓(𝑥) = ${b0.toFixed(3)} + ${b1.toFixed(3)}𝑥 <br>`
-                        }
-                        r2 = Math.pow((somaxy - somax * somay / n), 2) / ((somax2 - Math.pow(somax, 2) / n) * (somay2 - Math.pow(somay, 2) / n))
-                        res.innerHTML += `<br>Coeficiente de Determinação (𝑅²) <br>`
-                        res.innerHTML += `${r2.toFixed(5)}`
                         var menorx = 0
                         var maiorx = 0
                         for (var i = 0; i < xn.length; i++) {
@@ -173,13 +105,6 @@ const Home = () => {
                                 menorx = xn[i]
                             }
                         }
-                        for (var i2 = menorx; i2 <= maiorx; i2++) {
-                            x.push(i2)
-                            var fxconta = Number(b0.toFixed(3)) + Number(b1.toFixed(3)) * x[i2 - menorx]
-                            fx.push(fxconta)
-                        }
-
-                        chart2()
                         var i = xn.length - 1
                         var i2 = 0
                         var i3 = 1
@@ -205,6 +130,45 @@ const Home = () => {
                             i3++
                             i2++
                         }
+                        res.innerHTML = ``
+                        var cont = 0
+                        for (var i = 0; i < xn.length - 1; i ++) {
+                            //y0 = a1 * x0 + a0
+                            //- y1 = - (a1 * x1) - a0
+                            cont++
+                            var a0 = 0
+                            var a1 = 0
+                            var y0 = yn[i]
+                            var x0 = xn[i]
+                            var y1 = yn[i + 1]
+                            var x1 = xn[i + 1]
+                            a1 = (y0 - y1) / (x0 - x1)
+                            a0 = y0 - (x0 * a1)
+                            y0 = a1 * x0 + a0
+                            if(y0 != fx[fx.length-1]){
+                                fx.push(y0.toFixed(3))
+                            }
+                            if(x0 != x[x.length-1]){
+                                x.push(x0.toFixed(3))
+                            }
+                            y1 = a1 * x1 + a0
+                            if(y1 != fx[fx.length-1]){
+                                fx.push(y1.toFixed(3))
+                            }
+                            if(x1 != x[x.length-1]){
+                                x.push(x1.toFixed(3))
+                            }
+                            if (a0 < 0) {
+                                res.innerHTML += `\u{1F4C9} Equação da reta ${cont}: <br>`
+                                res.innerHTML += `a1 = ${a1.toFixed(3)} | a0 = ${a0.toFixed(3)} <br>`
+                                res.innerHTML += `𝑓(𝑥) = ${a1.toFixed(3)}𝑥 - ${Math.abs(a0).toFixed(3)} <br><br>`
+                            } else {
+                                res.innerHTML += `\u{1F4C9} Equação da reta ${cont}: <br>`
+                                res.innerHTML += `a1 = ${a1.toFixed(3)} | a0 = ${a0.toFixed(3)} <br>`
+                                res.innerHTML += `𝑓(𝑥) = ${a1.toFixed(3)}𝑥 + ${a0.toFixed(3)} <br><br>`
+                            }
+                            //window.alert(`x[${x}] a1[${a1}] a0[${a0}] \n xn[${xn}] \n\n fx[${fx}] \n yn[${yn}]`)
+                        }
                         chart1()
                     }
                 }}></input>
@@ -217,11 +181,8 @@ const Home = () => {
             <Line data={chartData1} options={{
                 responsive: true
             }} />
-            <Line data={chartData2} options={{
-                responsive: true
-            }} />
         </div>
     </div>
 }
 
-export default Home
+export default Interpol
