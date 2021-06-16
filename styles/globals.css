@@ -84,6 +84,14 @@ input#adic{
     margin: 0px 0px 0px 5px;
 }
 
+input#check{
+    text-align: center;
+    background-color: white;
+    font: normal 18pt Arial;
+    width: 150px;
+    margin: 10px 0px 0px 0px;
+}
+
 input#result{
     text-align: center;
     background-color: white;
