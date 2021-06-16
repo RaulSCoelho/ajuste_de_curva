@@ -70,9 +70,9 @@ const Interpol = () => {
                     var xi = Number(xitext)
                     var yi = Number(yitext)
                     if (xitext.length == 0 || yitext.length == 0) {
-                        res.innerHTML = `[ERRO] Digite os valores de xi e yi`
+                        res.innerHTML = `\u{2757} Digite os valores de xi e yi \u{2757}`
                     } else {
-                        if (res.innerHTML == `[ERRO] Digite os valores de xi e yi` || res.innerHTML == `[ERRO] Digite no mínimo dois valores para xi e yi`) {
+                        if (res.innerHTML == `\u{2757} Digite os valores de xi e yi \u{2757}` || res.innerHTML == `\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}`) {
                             res.innerHTML = ``
                         }
                         res.innerHTML += `${xi} | ${yi}<br>`
@@ -90,45 +90,49 @@ const Interpol = () => {
                 X: <input type="number" name="x" id="x"></input> Y: <input type="number" name="y" id="y"></input><br></br>
                 <input id="check" type="button" value="Testar valor" onClick={() => {
                     var res2 = document.getElementById('res2')
-                    var xptext = document.getElementById('x').value
-                    var yptext = document.getElementById('y').value
-                    var xp = Number(xptext)
-                    var yp = Number(yptext)
-                    res2.innerHTML = ``
-                    var menorx = 0
-                    var maiorx = 0
-                    for (var i = 0; i < xn.length; i++) {
-                        if (xn[i] > maiorx) {
-                            maiorx = xn[i]
+                    if (xn.length < 2) {
+                        res.innerHTML = `\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}`
+                    } {
+                        var xptext = document.getElementById('x').value
+                        var yptext = document.getElementById('y').value
+                        var xp = Number(xptext)
+                        var yp = Number(yptext)
+                        res2.innerHTML = ``
+                        var menorx = 0
+                        var maiorx = 0
+                        for (var i = 0; i < xn.length; i++) {
+                            if (xn[i] > maiorx) {
+                                maiorx = xn[i]
+                            }
                         }
-                    }
-                    menorx = maiorx
-                    for (var i = 0; i < xn.length; i++) {
-                        if (xn[i] < menorx) {
-                            menorx = xn[i]
+                        menorx = maiorx
+                        for (var i = 0; i < xn.length; i++) {
+                            if (xn[i] < menorx) {
+                                menorx = xn[i]
+                            }
                         }
-                    }
-                    var menory = 0
-                    var maiory = 0
-                    for (var i = 0; i < yn.length; i++) {
-                        if (yn[i] > maiory) {
-                            maiory = yn[i]
+                        var menory = 0
+                        var maiory = 0
+                        for (var i = 0; i < yn.length; i++) {
+                            if (yn[i] > maiory) {
+                                maiory = yn[i]
+                            }
                         }
-                    }
-                    menory = maiory
-                    for (var i = 0; i < yn.length; i++) {
-                        if (yn[i] < menory) {
-                            menory = yn[i]
+                        menory = maiory
+                        for (var i = 0; i < yn.length; i++) {
+                            if (yn[i] < menory) {
+                                menory = yn[i]
+                            }
                         }
-                    }
-                    if (xptext.length != 0 && yptext.length != 0) {
-                        res2.innerHTML += `\u{2757} Deixe vazio o campo do valor a ser encontrado \u{2757} <br>`
-                    } else if (xp > maiorx) {
-                        res2.innerHTML += `\u{2757} O valor a ser encontrado deve ser entre ${xn[0]} e ${xn[xn.length - 1]} \u{2757} <br>`
-                    } else if (yp > maiory) {
-                        res2.innerHTML += `\u{2757} O valor a ser encontrado deve ser entre ${yn[0]} e ${yn[yn.length - 1]} \u{2757} <br>`
-                    }else{
-                        res2.innerHTML += `\u{2705} Este valor pode ser usado \u{2705} <br>`
+                        if (xptext.length != 0 && yptext.length != 0) {
+                            res2.innerHTML += `\u{2757} Deixe vazio o campo do valor a ser encontrado \u{2757} <br>`
+                        } else if (xp > maiorx) {
+                            res2.innerHTML += `\u{2757} O valor a ser encontrado deve ser entre ${xn[0]} e ${xn[xn.length - 1]} \u{2757} <br>`
+                        } else if (yp > maiory) {
+                            res2.innerHTML += `\u{2757} O valor a ser encontrado deve ser entre ${yn[0]} e ${yn[yn.length - 1]} \u{2757} <br>`
+                        } else {
+                            res2.innerHTML += `\u{2705} Este valor pode ser usado \u{2705} <br>`
+                        }
                     }
                 }}></input>
             </div>
@@ -144,7 +148,7 @@ const Interpol = () => {
                     var xp = Number(xptext)
                     var yp = Number(yptext)
                     if (xn.length < 2) {
-                        res.innerHTML = `[ERRO] Digite no mínimo dois valores para xi e yi`
+                        res.innerHTML = `\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}`
                     } else {
                         fx = []
                         x = []
@@ -204,8 +208,6 @@ const Interpol = () => {
                         var a0 = []
                         var a1 = []
                         for (var i = 0; i < xn.length - 1; i++) {
-                            //y0 = a1 * x0 + a0
-                            //- y1 = - (a1 * x1) - a0
                             cont++
                             var y0 = yn[i]
                             var x0 = xn[i]
