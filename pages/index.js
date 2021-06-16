@@ -102,9 +102,9 @@ const Home = () => {
                     var xi = Number(xitext)
                     var yi = Number(yitext)
                     if (xitext.length == 0 || yitext.length == 0) {
-                        res.innerHTML = `<br>\u{2757} Digite os valores de xi e yi \u{2757}<br>`
+                        res.innerHTML = `\u{2757} Digite os valores de xi e yi \u{2757}`
                     } else {
-                        if (res.innerHTML == `<br>\u{2757} Digite os valores de xi e yi \u{2757}<br>` || res.innerHTML == `<br>\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}<br>`) {
+                        if (res.innerHTML == `\u{2757} Digite os valores de xi e yi \u{2757}` || res.innerHTML == `\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}`) {
                             res.innerHTML = ``
                         }
                         res.innerHTML += `${xi} | ${yi}<br>`
@@ -121,7 +121,7 @@ const Home = () => {
                 <input id="result" type="button" value="Resultado" onClick={() => {
                     var res = document.getElementById('res')
                     if (xn.length < 2) {
-                        res.innerHTML = `<br>\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}<br>`
+                        res.innerHTML = `\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}`
                     } else {
                         var somax = 0
                         var somay = 0
