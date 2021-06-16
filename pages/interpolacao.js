@@ -59,6 +59,7 @@ const Interpol = () => {
                 <input id="reset" type="button" value="Resetar" onClick={() => {
                     var res = document.getElementById('res')
                     res.innerHTML = ``
+                    res2.innerHTML = ``
                     xn = []
                     yn = []
                     n = 0
@@ -84,9 +85,21 @@ const Interpol = () => {
             <div id='res'>
 
             </div>
+            <div id="divnums">
+                Valor a ser encontrado (X ou Y):<br></br>
+                X: <input type="number" name="x" id="x"></input> Y: <input type="number" name="y" id="y"></input>
+            </div>
+            <div id='res2'>
+
+            </div>
             <div id='btnres'>
                 <input id="result" type="button" value="Resultado" onClick={() => {
                     var res = document.getElementById('res')
+                    var res2 = document.getElementById('res2')
+                    var xptext = document.getElementById('x').value
+                    var yptext = document.getElementById('y').value
+                    var xp = Number(xptext)
+                    var yp = Number(yptext)
                     if (xn.length < 2) {
                         res.innerHTML = `[ERRO] Digite no mínimo dois valores para xi e yi`
                     } else {
@@ -103,6 +116,19 @@ const Interpol = () => {
                         for (var i = 0; i < xn.length; i++) {
                             if (xn[i] < menorx) {
                                 menorx = xn[i]
+                            }
+                        }
+                        var menory = 0
+                        var maiory = 0
+                        for (var i = 0; i < yn.length; i++) {
+                            if (yn[i] > maiory) {
+                                maiory = yn[i]
+                            }
+                        }
+                        menory = maiory
+                        for (var i = 0; i < yn.length; i++) {
+                            if (yn[i] < menory) {
+                                menory = yn[i]
                             }
                         }
                         var i = xn.length - 1
@@ -132,42 +158,76 @@ const Interpol = () => {
                         }
                         res.innerHTML = ``
                         var cont = 0
-                        for (var i = 0; i < xn.length - 1; i ++) {
+                        var a0 = []
+                        var a1 = []
+                        for (var i = 0; i < xn.length - 1; i++) {
                             //y0 = a1 * x0 + a0
                             //- y1 = - (a1 * x1) - a0
                             cont++
-                            var a0 = 0
-                            var a1 = 0
                             var y0 = yn[i]
                             var x0 = xn[i]
                             var y1 = yn[i + 1]
                             var x1 = xn[i + 1]
-                            a1 = (y0 - y1) / (x0 - x1)
-                            a0 = y0 - (x0 * a1)
-                            y0 = a1 * x0 + a0
-                            if(y0 != fx[fx.length-1]){
+                            a1.push((y0 - y1) / (x0 - x1))
+                            a0.push(y0 - (x0 * a1[i]))
+                            y0 = a1[i] * x0 + a0[i]
+                            if (y0 != fx[fx.length - 1]) {
                                 fx.push(y0.toFixed(3))
                             }
-                            if(x0 != x[x.length-1]){
+                            if (x0 != x[x.length - 1]) {
                                 x.push(x0.toFixed(3))
                             }
-                            y1 = a1 * x1 + a0
-                            if(y1 != fx[fx.length-1]){
+                            y1 = a1[i] * x1 + a0[i]
+                            if (y1 != fx[fx.length - 1]) {
                                 fx.push(y1.toFixed(3))
                             }
-                            if(x1 != x[x.length-1]){
+                            if (x1 != x[x.length - 1]) {
                                 x.push(x1.toFixed(3))
                             }
-                            if (a0 < 0) {
+                            if (a0[i] < 0) {
                                 res.innerHTML += `\u{1F4C9} Equação da reta ${cont}: <br>`
-                                res.innerHTML += `a1 = ${a1.toFixed(3)} | a0 = ${a0.toFixed(3)} <br>`
-                                res.innerHTML += `𝑓(𝑥) = ${a1.toFixed(3)}𝑥 - ${Math.abs(a0).toFixed(3)} <br><br>`
+                                res.innerHTML += `a1 = ${a1[i].toFixed(3)} | a0 = ${a0[i].toFixed(3)} <br>`
+                                res.innerHTML += `𝑓(𝑥) = ${a1[i].toFixed(3)}𝑥 - ${Math.abs(a0[i]).toFixed(3)} <br><br>`
                             } else {
                                 res.innerHTML += `\u{1F4C9} Equação da reta ${cont}: <br>`
-                                res.innerHTML += `a1 = ${a1.toFixed(3)} | a0 = ${a0.toFixed(3)} <br>`
-                                res.innerHTML += `𝑓(𝑥) = ${a1.toFixed(3)}𝑥 + ${a0.toFixed(3)} <br><br>`
+                                res.innerHTML += `a1 = ${a1[i].toFixed(3)} | a0 = ${a0[i].toFixed(3)} <br>`
+                                res.innerHTML += `𝑓(𝑥) = ${a1[i].toFixed(3)}𝑥 + ${a0[i].toFixed(3)} <br><br>`
                             }
-                            //window.alert(`x[${x}] a1[${a1}] a0[${a0}] \n xn[${xn}] \n\n fx[${fx}] \n yn[${yn}]`)
+                        }
+                        res2.innerHTML = ``
+                        if (xptext.length != 0 && yptext.length != 0) {
+                            res2.innerHTML += `<br>`
+                            res2.innerHTML += `\u{2757} Deixe vazio o campo do valor a ser encontrado \u{2757} <br>`
+                        } else if (xp > maiorx) {
+                            res2.innerHTML += `<br>`
+                            res2.innerHTML += `\u{2757} O valor a ser encontrado deve ser entre ${xn[0]} e ${xn[xn.length - 1]} \u{2757} <br>`
+                        } else if (yp > maiory) {
+                            res2.innerHTML += `<br>`
+                            res2.innerHTML += `\u{2757} O valor a ser encontrado deve ser entre ${yn[0]} e ${yn[yn.length - 1]} \u{2757} <br>`
+                        } else if (xptext.length != 0 && yptext.length == 0) {
+                            var yres = 0
+                            var i2 = 0
+                            for (i2; xn[i2] < xp; i2++) {
+                                if(i2 == 0){
+                                    yres = a1[i2] * xp + a0[i2]
+                                }else{
+                                    yres = a1[i2-1] * xp + a0[i2-1]
+                                }
+                            }
+                            res2.innerHTML += `<br>Valor de Y para X=${xp} <br>`
+                            res2.innerHTML += `${yres.toFixed(3)}`
+                        } else if (xptext.length == 0 && yptext.length != 0) {
+                            var xres = 0
+                            var i2 = 0
+                            for (i2; yn[i2] < yp; i2++) {
+                                if(i2 == 0){
+                                    xres = (yp - a0[i2])/a1[i2]
+                                }else{
+                                    xres = (yp - a0[i2-1])/a1[i2-1]
+                                }
+                            }
+                            res2.innerHTML += `<br>Valor de X para Y=${yp} <br>`
+                            res2.innerHTML += `${xres.toFixed(3)}`
                         }
                         chart1()
                     }

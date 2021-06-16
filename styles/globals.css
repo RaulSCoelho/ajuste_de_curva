@@ -34,7 +34,6 @@ footer {
 
 div#divnums{
     text-align: center;
-    height: 40px;
 }
 
 div#btn{
@@ -49,11 +48,23 @@ div#res{
     text-align: center;
 }
 
+div#res2{
+    text-align: center;
+}
+
 input#xi{
     width: 100px;
 }
 
 input#yi{
+    width: 100px;
+}
+
+input#x{
+    width: 100px;
+}
+
+input#y{
     width: 100px;
 }
 
