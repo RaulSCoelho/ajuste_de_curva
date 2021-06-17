@@ -168,7 +168,6 @@ const Interpol = () => {
                     var yptext = document.getElementById('y').value
                     var xp = Number(xptext)
                     var yp = Number(yptext)
-                    n2 = 0
                     if (xn.length < 2) {
                         res.innerHTML = `\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}`
                     } else {
@@ -251,7 +250,7 @@ const Interpol = () => {
                             if (x1.toFixed(3) != x[x.length - 1]) {
                                 x.push(x1.toFixed(3))
                             }
-                            if (n2 % 2 != 1) {
+                            if (n2 % 2 == 1) {
                                 if (a0[i] < 0) {
                                     res.innerHTML += `\u{1F4C9} Equação da reta ${cont}: <br>`
                                     res.innerHTML += `a1 = ${a1[i].toFixed(3)} | a0 = ${a0[i].toFixed(3)} <br>`
@@ -295,6 +294,7 @@ const Interpol = () => {
                             res2.innerHTML += `<br>Valor de X para Y=${yp} <br>`
                             res2.innerHTML += `${xres.toFixed(3)}`
                         }
+                        n2 = 0
                         chart1()
                     }
                 }}></input>
