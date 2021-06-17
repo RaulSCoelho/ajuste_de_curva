@@ -101,17 +101,23 @@ const Home = () => {
                     var yitext = document.getElementById('yi').value
                     var xi = Number(xitext)
                     var yi = Number(yitext)
-                    if (xitext.length == 0 || yitext.length == 0) {
-                        res.innerHTML = `\u{2757} Digite os valores de xi e yi \u{2757}`
-                    } else {
-                        if (res.innerHTML == `\u{2757} Digite os valores de xi e yi \u{2757}` || res.innerHTML == `\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}`) {
-                            res.innerHTML = ``
+                    var cont = 0
+                    if (xi != xn[cont]) {
+                        if (xitext.length == 0 || yitext.length == 0) {
+                            res.innerHTML = `\u{2757} Digite os valores de xi e yi \u{2757}`
+                        } else {
+                            if (res.innerHTML == `\u{2757} Digite os valores de xi e yi \u{2757}` || res.innerHTML == `\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}`) {
+                                res.innerHTML = ``
+                            }
+                            res.innerHTML += `${xi} | ${yi}<br>`
+                            xn.push(xi)
+                            yn.push(yi)
                         }
-                        res.innerHTML += `${xi} | ${yi}<br>`
-                        xn.push(xi)
-                        yn.push(yi)
+                        n++
+                        cont++
+                    } else {
+                        window.alert(`\u{26A0} Escreva um valor de X diferente do anterior \u{26A0}`)
                     }
-                    n++
                 }}></input>
             </div>
             <div id='res'>

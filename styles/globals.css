@@ -48,6 +48,10 @@ div#res{
     text-align: center;
 }
 
+div#simnao{
+    text-align: center;
+}
+
 div#res2{
     text-align: center;
 }
@@ -97,6 +101,13 @@ input#result{
     background-color: white;
     font: normal 18pt Arial;
     width: 120px;
+    margin: 10px 0px 0px 0px;
+}
+
+input#functions{
+    text-align: center;
+    background-color: white;
+    font: normal 18pt Arial;
     margin: 10px 0px 0px 0px;
 }
 

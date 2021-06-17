@@ -9,6 +9,7 @@ const Interpol = () => {
     var xn = []
     var yn = []
     var n = 0
+    var n2 = 0
 
     const [chartData1, setChartData1] = useState({})
 
@@ -58,31 +59,51 @@ const Interpol = () => {
             <div id='btn'>
                 <input id="reset" type="button" value="Resetar" onClick={() => {
                     var res = document.getElementById('res')
+                    var simnao = document.getElementById('simnao')
+                    simnao.innerHTML = `(Sim ou Não)`
                     res.innerHTML = ``
                     res2.innerHTML = ``
                     xn = []
                     yn = []
                     n = 0
+                    n2 = 0
                 }}></input><input id="adic" type="button" value="Adicionar" onClick={() => {
                     var res = document.getElementById('res')
                     var xitext = document.getElementById('xi').value
                     var yitext = document.getElementById('yi').value
                     var xi = Number(xitext)
                     var yi = Number(yitext)
-                    if (xitext.length == 0 || yitext.length == 0) {
-                        res.innerHTML = `\u{2757} Digite os valores de xi e yi \u{2757}`
-                    } else {
-                        if (res.innerHTML == `\u{2757} Digite os valores de xi e yi \u{2757}` || res.innerHTML == `\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}`) {
-                            res.innerHTML = ``
+                    var cont = 0
+                    if (xi != xn[cont]) {
+                        if (xitext.length == 0 || yitext.length == 0) {
+                            res.innerHTML = `\u{2757} Digite os valores de xi e yi \u{2757}`
+                        } else {
+                            if (res.innerHTML == `\u{2757} Digite os valores de xi e yi \u{2757}` || res.innerHTML == `\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}`) {
+                                res.innerHTML = ``
+                            }
+                            res.innerHTML += `${xi} | ${yi}<br>`
+                            xn.push(xi)
+                            yn.push(yi)
                         }
-                        res.innerHTML += `${xi} | ${yi}<br>`
-                        xn.push(xi)
-                        yn.push(yi)
+                        n++
+                        cont++
+                    } else {
+                        window.alert(`\u{26A0} Escreva um valor de X diferente do anterior \u{26A0}`)
                     }
-                    n++
+                }}></input><br></br>
+                <input id="functions" type="button" value="Aparecer funções" onClick={() => {
+                    var simnao = document.getElementById('simnao')
+                    n2++
+                    if (n2 % 2 == 1) {
+                        simnao.innerHTML = `Sim \u{1F44D}`
+                    } else {
+                        simnao.innerHTML = `Não \u{1F44E}`
+                    }
                 }}></input>
             </div>
-            <div id='res'>
+            <div id='simnao'>
+                (Sim ou Não)
+            </div><div id='res'>
 
             </div>
             <div id="divnums">
@@ -147,6 +168,7 @@ const Interpol = () => {
                     var yptext = document.getElementById('y').value
                     var xp = Number(xptext)
                     var yp = Number(yptext)
+                    n2 = 0
                     if (xn.length < 2) {
                         res.innerHTML = `\u{2757} Digite no mínimo dois valores para xi e yi \u{2757}`
                     } else {
@@ -216,27 +238,29 @@ const Interpol = () => {
                             a1.push((y0 - y1) / (x0 - x1))
                             a0.push(y0 - (x0 * a1[i]))
                             y0 = a1[i] * x0 + a0[i]
-                            if (y0.toFixed(3) != fx[fx.length - 1 ]){
+                            if (y0.toFixed(3) != fx[fx.length - 1]) {
                                 fx.push(y0.toFixed(3))
                             }
                             if (x0.toFixed(3) != x[x.length - 1]) {
                                 x.push(x0.toFixed(3))
                             }
                             y1 = a1[i] * x1 + a0[i]
-                            if (y1.toFixed(3) != fx[fx.length - 1]){
+                            if (y1.toFixed(3) != fx[fx.length - 1]) {
                                 fx.push(y1.toFixed(3))
                             }
                             if (x1.toFixed(3) != x[x.length - 1]) {
                                 x.push(x1.toFixed(3))
                             }
-                            if (a0[i] < 0) {
-                                res.innerHTML += `\u{1F4C9} Equação da reta ${cont}: <br>`
-                                res.innerHTML += `a1 = ${a1[i].toFixed(3)} | a0 = ${a0[i].toFixed(3)} <br>`
-                                res.innerHTML += `𝑓(𝑥) = ${a1[i].toFixed(3)}𝑥 - ${Math.abs(a0[i]).toFixed(3)} <br><br>`
-                            } else {
-                                res.innerHTML += `\u{1F4C9} Equação da reta ${cont}: <br>`
-                                res.innerHTML += `a1 = ${a1[i].toFixed(3)} | a0 = ${a0[i].toFixed(3)} <br>`
-                                res.innerHTML += `𝑓(𝑥) = ${a1[i].toFixed(3)}𝑥 + ${a0[i].toFixed(3)} <br><br>`
+                            if (n2 % 2 != 1) {
+                                if (a0[i] < 0) {
+                                    res.innerHTML += `\u{1F4C9} Equação da reta ${cont}: <br>`
+                                    res.innerHTML += `a1 = ${a1[i].toFixed(3)} | a0 = ${a0[i].toFixed(3)} <br>`
+                                    res.innerHTML += `𝑓(𝑥) = ${a1[i].toFixed(3)}𝑥 - ${Math.abs(a0[i]).toFixed(3)} <br><br>`
+                                } else {
+                                    res.innerHTML += `\u{1F4C9} Equação da reta ${cont}: <br>`
+                                    res.innerHTML += `a1 = ${a1[i].toFixed(3)} | a0 = ${a0[i].toFixed(3)} <br>`
+                                    res.innerHTML += `𝑓(𝑥) = ${a1[i].toFixed(3)}𝑥 + ${a0[i].toFixed(3)} <br><br>`
+                                }
                             }
                         }
                         res2.innerHTML = ``
