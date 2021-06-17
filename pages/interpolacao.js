@@ -216,13 +216,17 @@ const Interpol = () => {
                             a1.push((y0 - y1) / (x0 - x1))
                             a0.push(y0 - (x0 * a1[i]))
                             y0 = a1[i] * x0 + a0[i]
-                            fx.push(y0.toFixed(3))
-                            if (x0 != x[x.length - 1]) {
+                            if (y0.toFixed(3) != fx[fx.length - 1 ]){
+                                fx.push(y0.toFixed(3))
+                            }
+                            if (x0.toFixed(3) != x[x.length - 1]) {
                                 x.push(x0.toFixed(3))
                             }
                             y1 = a1[i] * x1 + a0[i]
-                            fx.push(y1.toFixed(3))
-                            if (x1 != x[x.length - 1]) {
+                            if (y1.toFixed(3) != fx[fx.length - 1]){
+                                fx.push(y1.toFixed(3))
+                            }
+                            if (x1.toFixed(3) != x[x.length - 1]) {
                                 x.push(x1.toFixed(3))
                             }
                             if (a0[i] < 0) {
