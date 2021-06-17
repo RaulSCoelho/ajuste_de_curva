@@ -244,9 +244,7 @@ const Interpol = () => {
                                 x.push(x0.toFixed(3))
                             }
                             y1 = a1[i] * x1 + a0[i]
-                            if (y1.toFixed(3) != fx[fx.length - 1]) {
-                                fx.push(y1.toFixed(3))
-                            }
+                            fx.push(y1.toFixed(3))
                             if (x1.toFixed(3) != x[x.length - 1]) {
                                 x.push(x1.toFixed(3))
                             }
