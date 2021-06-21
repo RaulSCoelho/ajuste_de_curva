@@ -145,14 +145,21 @@ const Interpol = () => {
                                 menory = yn[i]
                             }
                         }
+                        //window.alert(`${maiorx} ${menorx} || ${maiory} ${menory} \n ${xptext.length} \n ${yptext.length}`)
                         if (xptext.length != 0 && yptext.length != 0) {
                             res2.innerHTML += `\u{2757} Deixe vazio o campo do valor a ser encontrado \u{2757} <br>`
-                        } else if (xp > maiorx || xp < menorx) {
-                            res2.innerHTML += `\u{2757} O valor a ser encontrado deve ser entre ${menorx} e ${maiorx} \u{2757} <br>`
-                        } else if (yp > maiory || yp < menory) {
-                            res2.innerHTML += `\u{2757} O valor a ser encontrado deve ser entre ${menory} e ${maiory} \u{2757} <br>`
-                        } else {
-                            res2.innerHTML += `\u{2705} Este valor pode ser usado \u{2705} <br>`
+                        } else if (xptext.length != 0) {
+                            if (xp > maiorx || xp < menorx) {
+                                res2.innerHTML += `\u{2757} O valor a ser encontrado deve ser entre ${menorx} e ${maiorx} \u{2757} <br>`
+                            }else{
+                                res2.innerHTML += `\u{2705} Este valor pode ser usado \u{2705} <br>`
+                            }
+                        } else if (yptext.length != 0) {
+                            if (yp > maiory || yp < menory) {
+                                res2.innerHTML += `\u{2757} O valor a ser encontrado deve ser entre ${menory} e ${maiory} \u{2757} <br>`
+                            }else{
+                                res2.innerHTML += `\u{2705} Este valor pode ser usado \u{2705} <br>`
+                            }
                         }
                     }
                 }}></input>
